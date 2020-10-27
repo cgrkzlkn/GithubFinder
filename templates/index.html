@@ -11,15 +11,15 @@
     </head>
     <body style= " background-image: url(static/images/avenue.jpg); background-attachment: fixed; background-position: center; background-size: cover;   background-repeat: no-repeat; " >
         
-        <header><h4 style="color: white;">GitHub Finder App with Python Flask and GitHub REST API</h4></header>
+        <header><h4 font-size : 1em; style="color: white;">GitHub Finder App with Python Flask and GitHub REST API</h4></header>
         <div class="container searchContainer" style = "margin-Top:100px;">
             <div class="search card card-body" style ="opacity: 0.95;" >
-                <h3>GitHub Kullanıcılarını Arayın (Search Github Users)</h3>
-                <p class="lead">
+                <h3 style= "font-size : 1em; >GitHub Kullanıcılarını Arayın (Search Github Users)</h3>
+                <p class="lead" style= "font-size : 1em; ">
                    Kullanıcı adı girin ve bilgilerine ulaşın ( Enter username and access their information )
                 </p>
                 <form action="/" method="POST">
-                    <input type="text" name="githubname" class = "form-control" placeholder="GitHub Kullanıcı Adı (GitHub Username)">
+                    <input type="text" name="githubname" class = "form-control" style= "font-size : 0.8em;" placeholder="GitHub Kullanıcı Adı (GitHub Username)">
                     <br>
                     <button type = "submit" class ="btn btn-primary">Ara</button>
                 </form>
@@ -49,7 +49,7 @@
                         </div>
                     </div>
                 </div>
-                <h3 class="page-heading mb-3" style=" background-color: white ; opacity:0.8; ">En son repolar (Last Repos)</h3>
+                <h3 class="page-heading mb-3" style=" background-color: white ; opacity:0.8; font-size : 1.5em; ">En son repolar (Last Repos)</h3>
                 <div id="repos" style ="opacity:0.95">
                     {% for repo in repos %}
                         <div class="card card-body mb-2">
@@ -59,8 +59,8 @@
                                     <a href="{{repo.html_url}}" target = "_blank" class = "btn btn-primary"> Repoya Git (Go To Repo) </a>
                                 </div>
                                 <div class="col-md-6">
-                                    <span class="badge badge-primary">Yıldızlar (Stars): {{repo.stargazers_count}} </span>
-                                    <span class="badge badge-primary">İzleyiciler (Watchers): {{repo.watchers}}</span>
+                                    <span class="badge badge-warning">Yıldızlar (Stars): {{repo.stargazers_count}} </span>
+                                    <span class="badge badge-danger">İzleyiciler (Watchers): {{repo.watchers}}</span>
                                     <span class="badge badge-success">Forklar (Forks):{{repo.forks}}</span>
                                 </div>
                             </div>
