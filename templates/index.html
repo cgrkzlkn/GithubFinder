@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html style= " height: 100%;" lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="https://bootswatch.com/4/litera/bootstrap.min.css">
+        <title>GitHub Finder</title>
+
+        
+    </head>
+    <body style= " background-image: url(static/images/avenue.jpg); background-size: cover;   background-repeat: no-repeat; " >
+        
+        <header><h4 style="color: white;">GitHub Finder App with Python Flask and GitHub REST API</h4></header>
+        <div class="container searchContainer" style = "margin-Top:100px;">
+            <div class="search card card-body" style ="opacity: 0.95;" >
+                <h3>GitHub Kullanıcılarını Arayın (Search Github Users)</h3>
+                <p class="lead">
+                   Kullanıcı adı girin ve bilgilerine ulaşın ( Enter username and access their information )
+                </p>
+                <form action="/" method="POST">
+                    <input type="text" name="githubname" class = "form-control" placeholder="GitHub Kullanıcı Adı (GitHub Username)">
+                    <br>
+                    <button type = "submit" class ="btn btn-primary">Ara</button>
+                </form>
+            </div>
+            <br>
+            {% if profile %}
+            <div id="profile">
+                
+                <div class="card card-body mb-3" style ="opacity: 0.95;" >
+                    <div class="row">
+                        <div class="col-md-3">
+                            <img class="img-fluid mb-2" src="{{profile.avatar_url}}">
+                            <a href="{{profile.html_url}}" target="_blank" class="btn btn-primary btn-block mb-4">Profili Görüntüle</a>
+                        </div>
+                        <div class="col-md-9">
+                            <span class="badge badge-danger">Repo Sayısı (Number of Repos) : {{profile.public_repos}} </span>
+                            <span class="badge badge-secondary">Gist Sayısı (Number of Gists) : {{profile.public_gists}} </span>
+                            <span class="badge badge-success">Takipçi (Followers): {{profile.followers}} </span>
+                            <span class="badge badge-info">Takip Edilen (Followings) : {{profile.following}}</span>
+                            <br><br>
+                            <ul class="list-group">
+                            <li class="list-group-item" style="font-weight: bold; font-style:oblique;">Şirket (Company): {{profile.company}}</li>
+                            <li class="list-group-item "style="font-weight: bold; font-style:oblique;">Website/Blog: {{profile.blog}}</li>
+                            <li class="list-group-item"style="font-weight: bold; font-style:oblique;">Yer (Location): {{profile.location}}</li>
+                            <li class="list-group-item"style="font-weight: bold; font-style:oblique;">Hesabın Oluşturulduğu Tarih/Saat (Account Creation Date/Time): {{profile.created_at}}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <h3 class="page-heading mb-3" style=" background-color: white ; opacity:0.8; ">En son repolar (Last Repos)</h3>
+                <div id="repos" style ="opacity:0.95">
+                    {% for repo in repos %}
+                        <div class="card card-body mb-2">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <span style="font-weight: bold;">{{repo.name}}</span> 
+                                    <a href="{{repo.html_url}}" target = "_blank" class = "btn btn-primary"> Repoya Git (Go To Repo) </a>
+                                </div>
+                                <div class="col-md-6">
+                                    <span class="badge badge-primary">Yıldızlar (Stars): {{repo.stargazers_count}} </span>
+                                    <span class="badge badge-primary">İzleyiciler (Watchers): {{repo.watchers}}</span>
+                                    <span class="badge badge-success">Forklar (Forks):{{repo.forks}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}    
+                        
+                </div>        
+            </div>
+            {% else %}
+
+                {% if error %}
+                <div class ="alert alert-primary">
+                    {{error}}
+                </div>
+
+
+                {% endif %}
+            {% endif %}
+        
+
+        
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </body>
+</html>
